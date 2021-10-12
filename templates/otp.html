@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+
+<link REL=StyleSheet HREF="{% static "css/aural.css" %}" TYPE="text/css" />
+</head>
+<body>
+<div class="login">
+	<h1>Enter the OTP received on your mobile.</h1>
+    
+    <form method="post" action="/register/" enctype="multipart/form-data">
+    	{% csrf_token %}
+        <input type="number" name="mobile" value={{ number }} />
+        <input type="number" name="mobileotp" placeholder="Enter OTP here." required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Enter!</button>
+    </form>
+</div>
+</body>
+
+
+</body>
+</html>

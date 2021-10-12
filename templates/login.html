@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel=stylesheet href="{% static "css/aural.css" %}" type="text/css" />
+</head>
+<body>
+<div class="login">
+    <h1>Login</h1>
+    
+    <form method="post" action="/login/" enctype="multipart/form-data">        {%  csrf_token %}
+        <input type="email" name="email" placeholder="Email-ID" required="required" />
+        <input type="password" name="password" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Login!</button>
+    </form>
+    <br><br>
+    Not Registered Yet?
+     <h2><a href="/register/">Register here</a></h2>
+</div>
+
+
+</body>
+</html>
+   

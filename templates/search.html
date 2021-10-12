@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Rentmate.com</title>
+	<link rel="icon" href="{% static "img\rent.jpg"  %}" type="image/jpg">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!--<script  src="{% static "js/rango-ajax.js" %}"></script>-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+
+footer {
+    
+    background-color: rgb(0,0,0);
+}
+/*.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }*/
+</style>
+</head>
+<body style="height:500px">
+
+<nav class="navbar navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">RentMate</a>
+    </div>
+   
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span></span><span></span>Hello,{{ name }}</a></li>
+        <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div style="text-align: center; height: 50px"><h2>Search Results</h2></div>
+
+{% for item in homes %}
+    <div class="container">
+      <div class="well" style="border-color: #000000; height:275px"><br>
+
+        <div class="container col-sm-4" style="float: left;margin: auto;">
+          <img src="{{ item.houseimage.url }}" style=" width: 300px !important; min-height:100px; max-height:200px"></div>
+              <div class="container col-sm-8"><h3><strong>Apartment Area:</strong> {{ item.space }} BHK<br>
+                  <strong>Expected Rent:</strong> Rs.{{ item.price }}<br>
+                  <strong>Address:</strong>  {{ item.address }}<br>
+                  <strong>Description:</strong> {{ item.description }}</h3>
+                  <!--<strong>Request sent</strong>-->
+              </div>
+              <center> <button type="button"  name="find" data-catid="{{ item.id }}" class="btn btn-default btn-lg"><a href="/send_mail/{{ item.id }}">Contact Dealer</a></button></center>
+        </div>
+    </div>
+{% endfor %}
+<footer>
+        <div class="container">
+            <!-- <div class="row"> -->
+                <div class="col-lg-10 col-lg-offset-1 text-center" style="color:white ">
+                    <h4><strong>Rentmate.com</strong>
+                    </h4>
+                    <p class="text-muted">Copyright &copy; Rentmate.com 2016</p>
+                </div>
+            <!-- </div> -->
+        </div>
+        <!-- <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a> -->
+    </footer>
+  
+  </body>
+</html>

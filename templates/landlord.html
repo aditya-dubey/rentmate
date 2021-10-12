@@ -1,0 +1,226 @@
+      <!DOCTYPE html>
+      {% load static %}
+      <html>
+      <head>
+      	<title>Rentmate.com</title>
+      	<link rel="icon" href="C:\Users\ASUS\Desktop\60004140031\WT\rent.jpg" type="image/jpg">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+      <style>
+
+      footer {
+
+          background-color: rgb(0,0,0);
+      }
+      /*.carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }*/
+        .callout {
+          display: table;
+          width: 100%;
+          height: 400px;
+          color: #fff;
+          background-image: linear-gradient(rgba(10,20,30,0.4),rgba(10,20,30,0.4)) ,url("{% static "img/owner.jpg" %}");
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          background-size: cover;
+          -o-background-size: cover;
+      }
+      .text-vertical-center {
+          display: table-cell;
+          text-align: center;
+          vertical-align: middle;
+      }
+
+      .hiw-btn._tab a {
+          display: inline-block;
+          padding: 10px;
+          color: #666;
+      }
+      </style>
+      </head>
+      <body style="height:500px">
+
+      <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">RentMate</a>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span></span><span></span>Hello,{{ name }}</a></li>
+            <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+            <div class="callout">
+                <div class="text-vertical-center"><h1><b>LEASING,REIMAGINED</b></h1>
+                  <div class="container">
+                    <button type="button" class="btn btn-dark btn-lg"><a href="#signUpModal" data-toggle="modal" data-target="#signUpModal">List Your Space</a></button>
+        <!-- <button type="button" class="btn btn-default">Default</button> -->
+      <!-- <a href="#signUpModal" data-toggle="modal" data-target="#signUpModal">
+      <h2>List Your Space</h2>  -->
+                  </div>
+                  </a>
+                </div>
+            </div>
+
+            <div id="signUpModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+               <!-- Modal content-->
+               <div class="modal-content" >
+                  <div class="modal-header bg-primary">
+                    <button type="button" class="close lead" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                      <h3 class="modal-title text-center"><b>Welcome Home Owners</b></h3>
+                  </div>
+               <div class="modal-body bg-primary">
+                 <form class="form-horizontal" id="signUpForm"  name="register" method="post" enctype="multipart/form-data" onsubmit="return validateForm(1)">
+                     {% csrf_token %}
+                    <div class="form-group">
+                      <label class="control-label col-sm-3" for="name">Locality:</label>
+                        <div class="dropdown col-sm-9">
+                            <div class="form-group">
+                                          <select class="form-control" id="sel1" name="locality">
+                                            <option>Select An Area</option>
+                                            <option value="Andheri">Andheri</option>
+                                            <option value="Bandra">Bandra</option>
+                                            <option value="Borivali">Borivali</option>
+                                            <option value="Goregaon">Goregaon</option>
+                                          </select>
+                                          </div>
+                        </div>
+                                      <!-- <div class="col-sm-9"  >
+                                          <input type="name" id="signUpFirstName" class="form-control" placeholder="Enter your Locality" required="">
+                                      </div> -->
+                      </div>
+        <!--                           <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+               -->     <div class="form-group">
+                         <label class="control-label col-sm-3" for="name">Address:</label>
+                            <div class="col-sm-9">
+                              <textarea class="form-control"  name="address" rows="5" cols="20" id="comment" class="form-control" placeholder="Enter address" required=""></textarea>
+                            </div>
+                        </div>
+                                  <div class="form-group">
+                                 <label class="control-label col-sm-3" for="name">Estimated Budget:</label>
+                                    <div class="col-sm-9"  >
+                                      <input type="number" name="price" id="Budget" class="form-control" placeholder="Enter your Budget" min="10000" max="100000" required="">
+                                   </div>
+                               </div>
+
+                                  <div class="form-group">
+                                      <label class="control-label col-sm-3" for="phone">Enter Ownership Proof:</label>
+                                      <div class="col-sm-9">
+                                          <input type="file" class="form-control" name="idproof" accept="application/pdf" required="">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="control-label col-sm-3" for="phone">Enter Image of House:</label>
+                                      <div class="col-sm-9">
+                                          <input type="file" class="form-control" name="houseimage" accept="image/*" required="">
+                                      </div>
+                                  </div>
+                                 <!--  <form action="demo_form.asp">
+        <input type="file" class="form-control" name="pic" accept="image/*">
+      </form> -->                 <div class="form-group" id="space">
+                                    <label class="control-label col-sm-3" for="name">SPACE(IN BHK):</label>
+                                      <div class="dropdown col-sm-9">
+                                      <!--  <button class="btn btn-default dropdown-toggle control-label" type="button" id="menu1" data-toggle="dropdown"> -->
+
+                                        <div class="form-group">
+                                          <select class="form-control" id="sel1" name="space">
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                          </select>
+                                          </div>
+                                       </div>
+                                  </div>
+                            <div class="form-group">
+                               <label class="control-label col-sm-3" for="name">Description:</label>
+                                <div class="col-sm-9">
+                                 <textarea class="form-control" name="description" rows="3" cols="20" id="comment" class="form-control" placeholder="Enter Description" required=""></textarea>
+                                </div>
+                            </div>
+                                   <div class="form-group" id="space">
+                                    <label class="control-label col-sm-3" for="name">Do you want to share your personal details:</label>
+                                      <div class="dropdown col-sm-9">
+                                      <!--  <button class="btn btn-default dropdown-toggle control-label" type="button" id="menu1" data-toggle="dropdown"> -->
+
+                                        <div class="form-group">
+                                          <select class="form-control" id="sel1" name="info">
+                                            <option value=1>YES</option>
+                                            <option value=2>NO</option>
+                                          </select>
+                                          </div>
+                                       </div>
+                                  </div>
+                                  <div class="form-group" >
+                                      <div class="col-sm-offset-5 col-sm-7">
+                                          <button type="submit" name="upload" class="btn btn-default text-center" onclick="sub()" >Submit</button>
+
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                          <!-- <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+              <div class="hiw-btn _tab"><center><h3>
+                <a href="/tenant/" title="Click here if you're a tenant">For Tenants</a>
+                <a href="/landlord/" title="Click here if you're an owner">For Owners</a></h3></center>
+              </div>
+        <div class="text-align" style="background-color: #f6f6f6">
+            <div style="padding: 25px">
+              <h2><img src="{% static "img\icon.jpg" %}" height="100px" width="100px">SERVICES</h2>
+              <h3>We aim at minimizing the stress of home owners.<br>
+                <span class="glyphicon glyphicon-ok-circle"></span>Maximize your rental revenue<br>
+                <span class="glyphicon glyphicon-ok-circle"></span>Timely rental collections<br>
+                <span class="glyphicon glyphicon-ok-circle"></span>Professional house maintenance</h3>
+            </div> <hr>     <!-- <div class="fa fa-briefcase" style="font-size:36px"></div> -->
+            <div style="padding: 25px">
+              <h2><img src="{% static "img/s.jpg" %}" height="100px" width="100px">Save Time & Money</h2>
+              <h3>No more running from one end of the city to another finding a perfect tenant and to maintain property.<br>
+                <span class="glyphicon glyphicon-ok-circle">No to brokers and brokerage</span><br>
+                <span class="glyphicon glyphicon-ok-circle">Screening tenants</span><br>
+                <span class="glyphicon glyphicon-ok-circle">Riddance from onsite visits</span></h3>
+            </div><hr>
+            <div style="padding: 25px">
+              <h2><img src="{% static "img/love.jpg" %}" height="100px" width="100px">Relax & Enjoy</h2>
+              <h3>ust like we said, you don’t have to worry about any apartment related issue.<br>
+                <span class="glyphicon glyphicon-ok-circle">Long term contracts</span><br>
+                <span class="glyphicon glyphicon-ok-circle">No investment on furnishing</span><br>
+                <span class="glyphicon glyphicon-ok-circle">Online access to monitor</span></h3>
+            </div><hr>
+        </div>
+
+          <footer>
+              <div class="container">
+                  <!-- <div class="row"> -->
+                      <div class="col-lg-10 col-lg-offset-1 text-center" style="color:white ">
+                          <h4><strong>Rentmate.com</strong>
+                          </h4>
+                          <p class="text-muted">Copyright &copy; Rentmate.com 2016</p>
+                      </div>
+                  <!-- </div> -->
+              </div>
+              <!-- <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a> -->
+          </footer>
+
+        </body>
+      </html>
